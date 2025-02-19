@@ -10,6 +10,9 @@ export const serverRoutes: ServerRoute[] = [
     path: 'csr',
     renderMode: RenderMode.Client,
   },
+  { path: 'ssg',
+    renderMode: RenderMode.Prerender
+  },
   {
     path: '**',
     renderMode: RenderMode.Server,

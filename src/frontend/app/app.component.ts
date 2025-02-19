@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { routes } from './app.routes'
+
 
 @Component({
   selector: 'app-root',
@@ -7,24 +9,35 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   template: `
     <h1>NestJS/Angular 19 SSR Monorepo</h1>
     <nav>
-      <a routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">Index Page (SSR)</a>
-      <a routerLink="/csr" routerLinkActive="active" ariaCurrentWhenActive="page">CSR Page</a>
+      @for (route of routes; track $index) {
+        <a [routerLink]="['/' + route.path]" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" ariaCurrentWhenActive="page">{{route.title}}</a>
+      }
+      <a href="/api">API Route</a>
     </nav>
     <main>
       <router-outlet />
     </main>
-    
   `,
   styles: [`
     nav { 
       padding: 1rem;
+      margin-bottom: 1rem;
       border: 2px dashed red;
       display: flex;
       flex-direction: row;
       gap: 0.5rem;
 
-      & a:hover {
-        cursor: pointer;  
+      & a {
+        text-decoration: none;
+
+        &.active {
+          color: red;
+        }
+
+        &:hover { 
+          cursor: pointer; 
+          text-decoration: underline;
+        }  
       }
     }
 
@@ -34,4 +47,6 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
     }
   `],
 })
-export class AppComponent {}
+export class AppComponent {
+  routes = routes
+}

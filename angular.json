@@ -44,8 +44,7 @@
             "externalDependencies": [
               "@nestjs/common",
               "@nestjs/microservices",
-              "@nestjs/websockets/socket-module",
-              "@fastify/static"
+              "@nestjs/websockets/socket-module"
             ],
             "outputPath": "dist/frontend",
             "index": "src/frontend/index.html",

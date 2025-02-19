@@ -1,17 +1,9 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { SsrMiddleware } from './ssr.middleware';
-import { ApiController } from './backend/backend.controller';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import { dirname, resolve } from 'path';
-import { fileURLToPath } from 'url';
-
-const serverDistFolder = resolve(dirname(fileURLToPath(import.meta.url)), '../');
-const browserDistFolder = resolve(serverDistFolder, 'browser');
+import { ApiController } from './backend/api.controller';
 
 @Module({
-  imports: [ServeStaticModule.forRoot({
-    rootPath: browserDistFolder
-  })],
+  imports: [],
   controllers: [ApiController],
   providers: [],
 })

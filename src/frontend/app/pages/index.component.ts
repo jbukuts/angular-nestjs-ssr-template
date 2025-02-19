@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { CounterComponent } from "../../components/counter.component";
+import { MyComponent } from "../../components/hydrate.component";
 
 @Component({
   selector: 'index',
-  imports: [CounterComponent],
+  imports: [CounterComponent, MyComponent],
   template: `
     <p>Index page content</p>
-    <counter/>
+    <hydrate-component />
+    <counter />
   `,
   styles: [],
 })

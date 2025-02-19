@@ -3,16 +3,30 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'counter',
   template: `
-    <button (click)="increment()">Click Me</button>
-    <p>count: {{ count }}</p>
+    <div>
+      <button (click)="increment()">Click Me</button>
+      <p>count: {{ count }}</p>
+    </div>
   `,
-  styles: [],
+  styles: [`
+    div {
+      display: flex;
+      height: auto;
+      flex-direction: row;
+      gap: 1rem;
+      padding: 1rem;
+      border: 2px dashed purple;
+
+      & p {
+        margin: 0;
+      }
+    }
+  `],
 })
 export class CounterComponent {
   count = 0;
 
-    increment() {
-        console.log('test')
-        this.count++
-    }
+  increment() {
+    this.count++
+  }
 }
