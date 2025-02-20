@@ -1,12 +1,16 @@
 import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { DataService } from '../app/services/data.service';
+import { DataService } from '#/frontend/services/data.service';
 
 @Component({
   selector: 'fetch-test',
   imports: [JsonPipe],
   template: `<pre>{{ data | json }}</pre>`,
-  styles: [],
+  styles: [`
+    pre {
+        overflow-x: auto;
+    }
+  `],
 })
 export class FetchComponent {
     count = 0;
@@ -14,7 +18,7 @@ export class FetchComponent {
     private dataService = inject(DataService)
     
     ngOnInit() {
-        this.dataService.fetchData({ route: '/api', ignoreCache: true }).subscribe((data) => {
+        this.dataService.fetchData({ route: '/api' }).subscribe((data) => {
             this.data = data;
         });
     }

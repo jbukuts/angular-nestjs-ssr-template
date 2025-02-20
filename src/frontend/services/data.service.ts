@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable, makeStateKey, TransferState } from "@angular/core";
+import { Injectable, makeStateKey, TransferState, Inject } from "@angular/core";
 import { of, tap } from "rxjs";
 // import crypto from 'crypto'
 
@@ -17,7 +17,7 @@ interface FetchDataOpts {
     providedIn: 'root',
 })
 export class DataService {
-
+ 
     constructor(
         private http: HttpClient,
         private transferState: TransferState

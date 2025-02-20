@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
+import { FetchComponent } from "#/components/fetch.component";
 
 @Component({
   selector: 'csr-test',
-  imports: [],
+  imports: [FetchComponent],
   template: `
+    <div id="fetch-test">
+      <fetch-test />
+    </div>
+
     <p>Notes on this page:</p>
     <ul>
       <li><u>This page is client-side rendered</u></li>
@@ -26,6 +31,13 @@ import { Component } from '@angular/core';
       <li><a href="https://angular.dev/reference/migrations/route-lazy-loading#after">Migration to lazy-loaded routes</a></li>
     </ul>
   `,
-  styles: [],
+  styles: [`
+    @use 'mixins' as *;
+
+    #fetch-test {
+      @include content-area(orange);
+    }
+  
+  `],
 })
 export class CSRPage {}
