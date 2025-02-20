@@ -1,11 +1,12 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppMiddleware } from './app.middleware';
-import { ApiController } from './app.controller';
-import { RenderController } from './render.controller';
+import { ApiModule } from './api/api.module';
+import { RouterModule } from '@nestjs/core';
+import { AppController } from './app.controller';
 
 @Module({
-  imports: [],
-  controllers: [ApiController, RenderController],
+  imports: [ApiModule, RouterModule.register([{ path: 'api', module: ApiModule }])],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule implements NestModule {

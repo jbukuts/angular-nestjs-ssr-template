@@ -48,6 +48,7 @@ import { FetchComponent } from "../../components/fetch.component";
    
     #ssr-data {
       @include content-area(orange);
+      margin-top: 1rem;
       overflow-x: auto;
     }
   `],

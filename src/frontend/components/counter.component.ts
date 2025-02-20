@@ -9,13 +9,14 @@ import { Component } from '@angular/core';
     </div>
   `,
   styles: [`
+    @use 'mixins' as *;
+
     div {
       display: flex;
       height: auto;
       flex-direction: row;
       gap: 1rem;
-      padding: 1rem;
-      border: 2px dashed purple;
+      @include content-area(purple);
 
       & p {
         margin: 0;

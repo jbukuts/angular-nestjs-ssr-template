@@ -19,11 +19,12 @@ import { routes } from './app.routes'
     </main>
   `,
   styles: [`
+    @use 'mixins' as *;
+
     nav { 
-      padding: 1rem;
       margin-bottom: 1rem;
-      border: 2px dashed red;
       display: flex;
+      @include content-area(red);
       flex-direction: row;
       gap: 0.5rem;
 
@@ -42,8 +43,7 @@ import { routes } from './app.routes'
     }
 
     main {
-      padding: 1rem;
-      border: 2px dashed blue;
+      @include content-area(blue);
     }
   `],
 })

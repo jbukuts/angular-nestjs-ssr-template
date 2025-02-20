@@ -1,37 +1,43 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, makeStateKey, TransferState } from "@angular/core";
 import { of, tap } from "rxjs";
+// import crypto from 'crypto'
 
-const MY_DATA_KEY = makeStateKey<any>('myData');
+interface FetchDataOpts {
+    /** route from which data is fetched */
+    route: string;
+    /** optional internal cache key (defaults to route) */
+    key?: string;
+    /** whether to ignore cache when fetching data */
+    ignoreCache?: boolean;
+}
+
 
 @Injectable({
     providedIn: 'root',
 })
 export class DataService {
+
     constructor(
         private http: HttpClient,
         private transferState: TransferState
     ) {}
 
-    fetchData() {
-        // Check if data already exists in TransferState
-        const storedData = this.transferState.get(MY_DATA_KEY, null);
+    fetchData<T = any>(opts: FetchDataOpts) {
+        const { route, key, ignoreCache = false } = opts
 
-        if (storedData) {
-            // Return the stored data
-            return of(storedData);
-        } else {
+        // const hash = crypto.createHash('sha256').update(route).digest('hex');
+        const cacheKey = makeStateKey<T>(key ?? route);
+        const storedData = this.transferState.get(cacheKey, null);
+        if (!ignoreCache && storedData) return of<T>(storedData);
 
-            // await new Promise((r) => setTimeout(r, 2000))
-
-            // Fetch data from the API
-            return this.http.get('https://jsonplaceholder.typicode.com/posts/1').pipe(
-                tap((data) => {
-                    // Store the data in TransferState for the client
-                    return data
-                    // this.transferState.set(MY_DATA_KEY, data);
-                })
-            );
-        }
+        // await new Promise((r) => setTimeout(r, 2000))
+        return this.http.get<T>(route).pipe(
+            tap((data) => {
+                this.transferState.set(cacheKey, data);
+                return data;
+            })
+        );
+        
     }
 }

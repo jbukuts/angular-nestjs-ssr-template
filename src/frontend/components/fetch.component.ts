@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { DataService } from '../app/services/data.service';
 
 @Component({
@@ -11,11 +11,10 @@ import { DataService } from '../app/services/data.service';
 export class FetchComponent {
     count = 0;
     data: any
-
-    constructor(private dataService: DataService) {}
+    private dataService = inject(DataService)
     
     ngOnInit() {
-        this.dataService.fetchData().subscribe((data) => {
+        this.dataService.fetchData({ route: '/api', ignoreCache: true }).subscribe((data) => {
             this.data = data;
         });
     }

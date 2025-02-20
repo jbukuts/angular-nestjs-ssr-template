@@ -8,9 +8,10 @@ import { Component, ElementRef, ViewChild, afterNextRender } from '@angular/core
         </div>
     `,
     styles: [`
+        @use 'mixins' as *;
+
         div {
-            border: 2px dashed teal;
-            padding: 1rem;
+            @include content-area(teal);
             margin-bottom: 1rem;
 
             & p {

@@ -63,6 +63,9 @@
             "styles": [
               "src/frontend/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/frontend/styles"]
+            },
             "scripts": [],
             "outputMode": "server",
             "server": "src/frontend/main.server.ts",
