@@ -1,13 +1,20 @@
 import { Component } from '@angular/core';
 import { CounterComponent } from "../../components/counter.component";
 import { MyComponent } from "../../components/hydrate.component";
+import { FetchComponent } from "../../components/fetch.component";
 
 @Component({
   selector: 'index',
-  imports: [CounterComponent, MyComponent],
+  imports: [CounterComponent, MyComponent, FetchComponent],
   template: `
     <hydrate-component />
     <counter />
+
+    <div id="ssr-data">
+      <p>This data is fetched server-side. Verify this by watching the <b>Network</b> tab. Initial page loads will have no XHR request. Once CSR takes over returning to this page will trigger one.</p>
+
+      <fetch-test/>
+    </div>
 
     <p>This template is built using:</p>
     <ul>
@@ -36,6 +43,13 @@ import { MyComponent } from "../../components/hydrate.component";
     </ul>
 
   `,
-  styles: [],
+  styles: [`
+    @use '../../styles/mixins' as *;
+   
+    #ssr-data {
+      @include content-area(orange);
+      overflow-x: auto;
+    }
+  `],
 })
 export class IndexPage {}

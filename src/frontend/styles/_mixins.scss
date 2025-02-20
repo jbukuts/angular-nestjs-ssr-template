@@ -1,0 +1,4 @@
+@mixin content-area($color: black) {
+    border: 2px dashed $color;
+    padding: 1rem;
+}
