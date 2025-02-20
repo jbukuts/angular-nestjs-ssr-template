@@ -7,7 +7,7 @@ import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { NestExpressApplication } from '@nestjs/platform-express';
 
-const port = process.env['PORT'] ?? 3000;
+const port = process.env['PORT'] ?? 5000;
 const isDev = process.env['NODE_ENV'] === 'development';
 const serverDistFolder = resolve(dirname(fileURLToPath(import.meta.url)), '../');
 const browserDistFolder = resolve(serverDistFolder, 'browser');
@@ -20,7 +20,7 @@ await (isDev ? app.init() : app.listen(port, () => {
 }))
 
 /**
- * kill the server on HMR or else the build will stall 
+ * kill the server or else the HMR build will stall 
  * @see https://vite.dev/guide/api-hmr
  */ 
 if (isDev && import.meta.hot) {
@@ -32,6 +32,7 @@ if (isDev && import.meta.hot) {
 }
 
 /**
+ * Needed for angular dev server SSR
  * @see https://angular.dev/guide/hybrid-rendering#configuring-a-nodejs-server
  */
 export const reqHandler = createNodeRequestHandler(app.getHttpAdapter().getInstance())

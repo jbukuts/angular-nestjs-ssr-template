@@ -1,14 +1,15 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { SsrMiddleware } from './ssr.middleware';
+import { AppMiddleware } from './app.middleware';
 import { ApiController } from './app.controller';
+import { RenderController } from './render.controller';
 
 @Module({
   imports: [],
-  controllers: [ApiController],
+  controllers: [ApiController, RenderController],
   providers: [],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-      consumer.apply(SsrMiddleware).forRoutes('*')
+      consumer.apply(AppMiddleware).forRoutes('*')
   }
 }
