@@ -7,6 +7,17 @@ import { Component, ElementRef, ViewChild, afterNextRender } from '@angular/core
             <p>{{text}}</p>
         </div>
     `,
+    styles: [`
+        div {
+            border: 2px dashed teal;
+            padding: 1rem;
+            margin-bottom: 1rem;
+
+            & p {
+                margin: 0;
+            }
+        }
+    `]
 })
 export class MyComponent {
     @ViewChild('content') contentRef!: ElementRef;
@@ -19,6 +30,6 @@ export class MyComponent {
     }
 
     ngOnInit(): void {
-        this.text = 'Hydrated'
+        this.text = 'Hydrated!'
     }
 }

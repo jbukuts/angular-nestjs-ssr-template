@@ -1,6 +1,6 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { SsrMiddleware } from './ssr.middleware';
-import { ApiController } from './backend/api.controller';
+import { ApiController } from './app.controller';
 
 @Module({
   imports: [],

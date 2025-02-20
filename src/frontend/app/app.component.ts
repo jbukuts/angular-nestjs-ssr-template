@@ -7,7 +7,7 @@ import { routes } from './app.routes'
   selector: 'app-root',
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
   template: `
-    <h1>NestJS/Angular 19 SSR Monorepo</h1>
+    <h1>Nest/Angular 19 Monorepo</h1>
     <nav>
       @for (route of routes; track $index) {
         <a [routerLink]="['/' + route.path]" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" ariaCurrentWhenActive="page">{{route.title}}</a>
