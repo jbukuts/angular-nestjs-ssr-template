@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { CounterComponent } from "#/frontend/components/counter.component";
-import { MyComponent } from "#/frontend/components/hydrate.component";
-import { FetchComponent } from "#/frontend/components/fetch.component";
+import { CounterComponent } from "#/components/counter.component";
+import { MyComponent } from "#/components/hydrate.component";
+import { FetchComponent } from "#/components/fetch.component";
 
 @Component({
   selector: 'index',

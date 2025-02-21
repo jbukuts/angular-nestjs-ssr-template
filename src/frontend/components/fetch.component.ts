@@ -1,6 +1,6 @@
 import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { DataService } from '#/frontend/services/data.service';
+import { DataService } from '#/services/data.service';
 
 @Component({
   selector: 'fetch-test',

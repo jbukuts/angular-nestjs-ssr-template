@@ -21,6 +21,7 @@
     "paths": {
       "#/frontend/*": ["src/frontend/*"],
       "#/components/*": ["src/frontend/components/*"],
+      "#/services/*": ["src/frontend/services/*"],
       "#/backend/*": ["src/backend/*"]
     }
   },
