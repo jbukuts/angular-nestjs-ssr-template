@@ -64,7 +64,9 @@
               "src/frontend/styles.scss"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["src/frontend/styles"]
+              "includePaths": [
+                "src/frontend/styles"
+              ]
             },
             "scripts": [],
             "outputMode": "server",
@@ -111,8 +113,23 @@
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/frontend/**/*.ts",
+              "src/frontend/**/*.html"
+            ]
+          }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false,
+    "schematicCollections": [
+      "angular-eslint"
+    ]
   }
 }

@@ -4,8 +4,10 @@ import { ApiController } from './api.controller';
 @Module({
   imports: [],
   controllers: [ApiController],
-  providers: [],
+  providers: []
 })
 export class ApiModule implements NestModule {
-  configure() {}
+  configure() {
+    return;
+  }
 }

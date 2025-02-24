@@ -1,19 +1,23 @@
 import { Component } from '@angular/core';
-import { CounterComponent } from "#/components/counter.component";
-import { MyComponent } from "#/components/hydrate.component";
-import { FetchComponent } from "#/components/fetch.component";
+import { CounterComponent } from '#/components/counter.component';
+import { HydrateComponent } from '#/components/hydrate.component';
+import { FetchComponent } from '#/components/fetch.component';
 
 @Component({
-  selector: 'index',
-  imports: [CounterComponent, MyComponent, FetchComponent],
+  selector: 'app-index',
+  imports: [CounterComponent, HydrateComponent, FetchComponent],
   template: `
-    <hydrate-component />
-    <counter />
+    <app-hydrate-component />
+    <app-counter />
 
     <div id="ssr-data">
-      <p>This data is fetched server-side. Verify this by watching the <b>Network</b> tab. Initial page loads will have no XHR request. Once CSR takes over returning to this page will trigger one.</p>
+      <p>
+        This data is fetched server-side. Verify this by watching the
+        <b>Network</b> tab. Initial page loads will have no XHR request. Once
+        CSR takes over returning to this page will trigger one.
+      </p>
 
-      <fetch-test/>
+      <app-fetch-test />
     </div>
 
     <p>This template is built using:</p>
@@ -28,29 +32,46 @@ import { FetchComponent } from "#/components/fetch.component";
       <li><u>This page performs hydration</u></li>
     </ul>
 
-    <p>This page is defined to be <b>server-side rendered</b> via the server routing API in Angular and built/served using <b>NestJS middlware</b>.</p>
-    
+    <p>
+      This page is defined to be <b>server-side rendered</b> via the server
+      routing API in Angular and built/served using <b>NestJS middlware</b>.
+    </p>
+
     <p>How to verify this page is server-side rendered:</p>
     <ul>
-      <li><b>Check the page source:</b> The page source should contain all content you see here.</li>
-      <li><b>Watch the server log:</b> The NestJS instance should trigger the middleware and producing a log when accessing this page.</li>
+      <li>
+        <b>Check the page source:</b> The page source should contain all content
+        you see here.
+      </li>
+      <li>
+        <b>Watch the server log:</b> The NestJS instance should trigger the
+        middleware and producing a log when accessing this page.
+      </li>
     </ul>
 
     <p>Docs on SSR:</p>
     <ul>
-      <li><a href="https://angular.dev/guide/prerendering">Prerendering (SSG)</a></li>
-      <li><a href="https://angular.dev/guide/hybrid-rendering#configuring-server-routes">Configuring server routes</a></li>
+      <li>
+        <a href="https://angular.dev/guide/prerendering">Prerendering (SSG)</a>
+      </li>
+      <li>
+        <a
+          href="https://angular.dev/guide/hybrid-rendering#configuring-server-routes"
+          >Configuring server routes</a
+        >
+      </li>
     </ul>
-
   `,
-  styles: [`
-    @use 'mixins' as *;
-   
-    #ssr-data {
-      @include content-area(orange);
-      margin-top: 1rem;
-      overflow-x: auto;
-    }
-  `],
+  styles: [
+    `
+      @use 'mixins' as *;
+
+      #ssr-data {
+        @include content-area(orange);
+        margin-top: 1rem;
+        overflow-x: auto;
+      }
+    `
+  ]
 })
 export class IndexPage {}
