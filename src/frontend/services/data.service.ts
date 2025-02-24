@@ -31,7 +31,6 @@ export class DataService {
         const storedData = this.transferState.get(cacheKey, null);
         if (!ignoreCache && storedData) return of<T>(storedData);
 
-        // await new Promise((r) => setTimeout(r, 2000))
         return this.http.get<T>(route).pipe(
             tap((data) => {
                 this.transferState.set(cacheKey, data);

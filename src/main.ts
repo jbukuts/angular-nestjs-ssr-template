@@ -6,6 +6,7 @@ import { createNodeRequestHandler } from '@angular/ssr/node';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { ValidationPipe } from '@nestjs/common';
 
 const port = process.env['PORT'] ?? 5000;
 const isDev = process.env['NODE_ENV'] === 'development';
@@ -15,6 +16,7 @@ const browserDistFolder = resolve(serverDistFolder, 'browser');
 const app = await NestFactory.create<NestExpressApplication>(AppModule);
 app.useStaticAssets(browserDistFolder);
 app.enableShutdownHooks();
+app.useGlobalPipes(new ValidationPipe())
 await (isDev ? app.init() : app.listen(port, () => {
     console.log('Server is listening on port', port);
 }))
