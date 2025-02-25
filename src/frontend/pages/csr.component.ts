@@ -5,9 +5,7 @@ import { FetchComponent } from '#/components/fetch.component';
   selector: 'app-csr-test',
   imports: [FetchComponent],
   template: `
-    <div id="fetch-test">
-      <app-fetch-test />
-    </div>
+    <app-fetch-test />
 
     <p>Notes on this page:</p>
     <ul>
@@ -45,14 +43,6 @@ import { FetchComponent } from '#/components/fetch.component';
       </li>
     </ul>
   `,
-  styles: [
-    `
-      @use 'mixins' as *;
-
-      #fetch-test {
-        @include content-area(orange);
-      }
-    `
-  ]
+  styles: []
 })
 export class CSRPage {}

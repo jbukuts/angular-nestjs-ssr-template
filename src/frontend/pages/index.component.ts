@@ -10,15 +10,13 @@ import { FetchComponent } from '#/components/fetch.component';
     <app-hydrate-component />
     <app-counter />
 
-    <div id="ssr-data">
-      <p>
+    <app-fetch-test
+      ><p>
         This data is fetched server-side. Verify this by watching the
         <b>Network</b> tab. Initial page loads will have no XHR request. Once
         CSR takes over returning to this page will trigger one.
-      </p>
-
-      <app-fetch-test />
-    </div>
+      </p></app-fetch-test
+    >
 
     <p>This template is built using:</p>
     <ul>
@@ -62,16 +60,6 @@ import { FetchComponent } from '#/components/fetch.component';
       </li>
     </ul>
   `,
-  styles: [
-    `
-      @use 'mixins' as *;
-
-      #ssr-data {
-        @include content-area(orange);
-        margin-top: 1rem;
-        overflow-x: auto;
-      }
-    `
-  ]
+  styles: []
 })
 export class IndexPage {}
