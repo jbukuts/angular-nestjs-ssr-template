@@ -5,12 +5,15 @@ import { RouterModule } from '@nestjs/core';
 import { AppController } from './app.controller';
 
 @Module({
-  imports: [ApiModule, RouterModule.register([{ path: 'api', module: ApiModule }])],
+  imports: [
+    ApiModule,
+    RouterModule.register([{ path: 'api', module: ApiModule }])
+  ],
   controllers: [AppController],
-  providers: [],
+  providers: []
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-      consumer.apply(AppMiddleware).forRoutes('*')
+    consumer.apply(AppMiddleware).forRoutes('*');
   }
 }
