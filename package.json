@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "cross-env NODE_TLS_REJECT_UNAUTHORIZED='0' ng serve",
     "build": "ng build --configuration production",
+    "start": "node dist/frontend/server/server.mjs",
     "build:watch": "ng build --watch --configuration production",
-    "start": "cross-env NODE_ENV=production node --watch dist/frontend/server/server.mjs",
+    "start:watch": "node --watch dist/frontend/server/server.mjs",
     "ng": "ng"
   },
   "private": true,
