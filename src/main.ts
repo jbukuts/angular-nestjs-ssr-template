@@ -7,6 +7,7 @@ import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { ValidationPipe } from '@nestjs/common';
+import 'dotenv/config';
 
 const port = process.env['PORT'] ?? 5000;
 const isDev = process.env['NODE_ENV'] === 'development';

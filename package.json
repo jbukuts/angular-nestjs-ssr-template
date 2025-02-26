@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_TLS_REJECT_UNAUTHORIZED='0' ng serve",
+    "dev": "ng serve",
     "build": "ng build --configuration production",
     "start": "node dist/frontend/server/server.mjs",
     "build:watch": "ng build --watch --configuration production",
@@ -27,6 +27,7 @@
     "@nestjs/platform-express": "^11.0.10",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "dotenv": "^16.4.7",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
