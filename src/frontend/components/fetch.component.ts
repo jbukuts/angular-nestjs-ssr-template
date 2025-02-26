@@ -1,6 +1,7 @@
 import { JsonPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import injectQuery from '../services/query.service';
+import { HttpClient } from '@angular/common/http';
 
 interface TestData {
   userId: number;
@@ -15,13 +16,13 @@ interface TestData {
   template: `
     <div id="wrapper">
       <div><ng-content /></div>
-      @if (query().pending) {
+      @if (query.isPending()) {
         <p>Loading...</p>
       } @else {
-        <pre>{{ query().data | json }}</pre>
+        <pre>{{ query.data() | json }}</pre>
       }
 
-      <button (click)="query().refetch()" [disabled]="query().pending">
+      <button (click)="query.refetch()" [disabled]="query.isPending()">
         Refetch
       </button>
     </div>
@@ -35,6 +36,7 @@ interface TestData {
         margin-top: 1rem;
         overflow-x: auto;
       }
+
       pre {
         overflow-x: auto;
       }
@@ -42,7 +44,15 @@ interface TestData {
   ]
 })
 export class FetchComponent implements OnInit {
-  query = injectQuery<TestData>({ route: `/api?wait=${1000}`, ttl: 500 });
+  #http = inject(HttpClient);
+
+  query = injectQuery<TestData>({
+    key: 'test-fetch',
+    route: this.#http.get<TestData>('/api', { params: { wait: 500 } }),
+    keepPreviousData: false,
+    ttl: 500,
+    onSuccess: (d) => console.log(d)
+  });
 
   ngOnInit() {
     return;
